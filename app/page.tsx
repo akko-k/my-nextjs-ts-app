@@ -1,55 +1,55 @@
-'use client';
-import { useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-
-const fetchPosts = async () => {
-  const response = await fetch(
-    'https://jsonplaceholder.typicode.com/posts'
-  );
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
-};
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function Home() {
-  const router = useRouter();
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['posts'],
-    queryFn: fetchPosts,
-  });
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error instanceof Error)
-    return <div>Error: {error.message}</div>;
-
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-between">
-        <h1 className="text-3xl font-bold mb-4">Posts</h1>
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => router.push('/posts')}>
-          Create Post
-        </button>
-      </div>
-      <ul className="space-y-4">
-        {data.map((post: any) => (
-          <li
-            key={post.id}
-            className="border p-4 rounded shadow">
-            <Link
-              href={`/posts/${post.id}`}
-              className="hover:text-blue-500 hover:underline">
-              <h2 className="text-2xl font-semibold mb-2">
-                {post.title}
-              </h2>
-              <p className="text-gray-700">{post.body}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="flex justify-center gap-4 p-10">
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">ログイン</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>ログインフォーム</DialogTitle>
+            <DialogDescription>
+              こちらからログインしてください
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="email" className="text-right">
+                email
+              </Label>
+              <Input id="email" className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label
+                htmlFor="password"
+                className="text-right">
+                password
+              </Label>
+              <Input
+                id="password"
+                className="col-span-3"
+                type="password"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button type="submit">ログイン</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
