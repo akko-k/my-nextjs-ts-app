@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import ImageGallery from '@/components/ImageGallery';
 
 export default function Home() {
   return (
@@ -50,6 +51,7 @@ export default function Home() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <ImageGallery />
     </div>
   );
 }
