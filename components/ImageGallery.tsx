@@ -17,10 +17,10 @@ export default function ImageGallery() {
           <Image
             src={image.src}
             alt={image.alt}
+            sizes="300px"
             fill
             style={{
-              width: '100%',
-              height: 'auto',
+              objectFit: 'contain',
             }}
           />
         </div>
