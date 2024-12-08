@@ -1,9 +1,8 @@
-import ImageGallery from '@/components/ImageGallery';
-
+import ThemeToggleButton from './components/ThemeToggleButton';
 export default function Home() {
   return (
     <div>
-      <ImageGallery />
+      <ThemeToggleButton />
     </div>
   );
 }
