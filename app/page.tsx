@@ -1,8 +1,10 @@
-import ThemeToggleButton from './components/ThemeToggleButton';
 export default function Home() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   return (
     <div>
-      <ThemeToggleButton />
+      <h1>Current API URL: {apiUrl}</h1>
+      <p>API Key: {apiKey}</p>
     </div>
   );
 }
