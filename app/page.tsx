@@ -1,10 +1,13 @@
-export default function Home() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+import { Suspense } from 'react';
+import AboutPage from './components/AboutPage';
+
+export default function HomePage() {
   return (
     <div>
-      <h1>Current API URL: {apiUrl}</h1>
-      <p>API Key: {apiKey}</p>
+      <h1>Welcome to the homepage!</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <AboutPage />
+      </Suspense>
     </div>
   );
 }
