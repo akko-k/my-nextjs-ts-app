@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-export default function SignUp() {
+export default async function SignUp() {
   return (
     <div className="w-full flex justify-center mt-40">
       <Card className="w-[350px]">
