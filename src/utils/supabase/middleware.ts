@@ -40,7 +40,7 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const publicPaths = ['/login', '/auth', '/signup']; // ここに認証不要のパスを追加
+  const publicPaths = ['/login', '/auth', '/signup']; // 認証不要のパス
 
   if (
     request.nextUrl.pathname === '/' ||
