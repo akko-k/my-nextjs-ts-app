@@ -1,5 +1,5 @@
 'use server';
-import { login } from './actions';
+import { login, loginGoogle } from './actions';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+
 export default async function Login() {
   return (
     <div className="w-full flex justify-center mt-40">
@@ -39,10 +40,16 @@ export default async function Login() {
             </div>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button type="submit" form="signup">
-            ログイン
-          </Button>
+        <CardFooter className="flex justify-center flex-col gap-4 w-full">
+          <div className="w-full flex justify-end">
+            <Button type="submit" form="login">
+              ログイン
+            </Button>
+          </div>
+          <div className="border w-full"></div>
+          <form action={loginGoogle}>
+            <Button type="submit">Googleでログイン</Button>
+          </form>
         </CardFooter>
       </Card>
     </div>

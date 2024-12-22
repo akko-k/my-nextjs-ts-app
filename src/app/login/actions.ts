@@ -21,3 +21,26 @@ export async function login(formData: FormData) {
   revalidatePath('/');
   redirect('/');
 }
+
+export async function loginGoogle() {
+  'use server';
+  const supabase = await createClient();
+  const { data, error } =
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${process.env.NEXT_PUBLIC_ORIGIN}/auth/callback`,
+      },
+    });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  if (!data.url) {
+    return { error: 'No URL returned' };
+  }
+
+  redirect(data.url);
+}
